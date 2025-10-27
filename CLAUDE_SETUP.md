@@ -9,7 +9,7 @@ Your AI Agent extension now supports **Claude Sonnet 4** for lightning-fast resp
 2. Click the **"⚡ Setup Claude"** button in the header
 3. Enter your Anthropic API key when prompted
 4. Select **"Claude Sonnet 4 ⚡"** from the model dropdown
-5. Start chatting with ultra-fast responses!
+5. Start chatting with ultra-fast responses!dfhfhfg
 
 ### **Method 2: Manual Setup**
 1. Get your API key from: https://console.anthropic.com/
