@@ -33,7 +33,7 @@ Your AI Agent includes **3 completely free local models** that provide excellent
 | **CodeLlama** ✓ | 30-90 sec | 3.8GB | FREE | Code Analysis |
 | **Llama 3** 🦙 | 60-180 sec | 4.7GB | FREE | General Conversations |
 
-## 🚀 **Quick Setup Guide**
+## 🚀 **Quick Setup Guide**hghjk
 
 ### **Step 1: Install Fast Models**hjgjhfj
 ```bash
