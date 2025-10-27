@@ -9,7 +9,7 @@ Your AI Agent includes **3 completely free local models** that provide excellent
 - **Size**: 3.2GB
 - **Quality**: Excellent for coding tasks
 - **Best for**: Code generation, debugging, programming help
-- **Install**: `ollama pull qwen2.5-coder`
+- **Install**: `ollama pull qwen2.5-coder`dsfds
 
 ### **2. ✓ CodeLlama (Meta) - CODE SPECIALIST**
 - **Speed**: 30-90 seconds (optimized)
