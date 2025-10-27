@@ -52,7 +52,7 @@ ollama pull qwen2.5-coder # Best for coding
 3. Select **"Phi-3 Mini 🔥 (Fast & Free)"**dgdfgd
 4. Start chatting with 5-15 second responses!
 
-## 🎯 **Model Recommendations**
+## 🎯 **Model Recommendations**xvxg
 
 ### **For General Chat & Questions**
 - **Use Phi-3 Mini** 🔥
