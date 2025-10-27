@@ -1,0 +1,436 @@
+{
+  "name": "ai-agent",
+  "displayName": "AI Agent",
+  "description": "🤖 ChatGPT-like AI assistant with streaming responses and conversational interface powered by local Ollama",
+  "version": "1.0.3",
+  "publisher": "ai-agent-dev",
+  "engines": {
+    "vscode": "^1.99.0",
+    "cursor": "^1.0.0"
+  },
+  "categories": [
+    "Machine Learning",
+    "AI",
+    "Chat",
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "assistant",
+    "ollama",
+    "llama",
+    "artificial intelligence",
+    "general purpose",
+    "productivity",
+    "chat",
+    "streaming",
+    "intelligent agents",
+    "conversation",
+    "local ai",
+    "chatgpt",
+    "chatgpt-like",
+    "conversational ai",
+    "cursor",
+    "cursor-extension"
+  ],
+
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:ai-agent.showActivityBar",
+    "onCommand:ai-agent.newJob",
+    "onCommand:ai-agent.openLogs",
+    "onCommand:ai-agent.diffLatest",
+    "onCommand:ai-agent.cancelJob",
+    "onView:ai-agent-ops"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true,
+      "description": "AI Agent works in untrusted workspaces"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ai-agent-dev/ai-agent-vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/ai-agent-dev/ai-agent-vscode/issues"
+  },
+  "homepage": "https://github.com/ai-agent-dev/ai-agent-vscode#readme",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "AI Agent Settings",
+      "properties": {
+        "ai-agent.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your OpenAI API key (kept private in user settings)"
+        },
+
+        "ai-agent.ollamaUrl": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "Ollama server URL"
+        },
+        "ai-agent.defaultModel": {
+          "type": "string",
+          "default": "qwen2.5-coder",
+          "enum": ["qwen2.5-coder", "codellama", "llama3"],
+          "description": "Default AI model to use"
+        },
+        "ai-agent.enableStreaming": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable streaming responses for better user experience"
+        },
+        "ai-agent.showStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show AI Agent status in the status bar"
+        },
+        "ai-agent.autoSaveResponses": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically save AI responses to workspace"
+        },
+        "ai-agent.responseLanguage": {
+          "type": "string",
+          "default": "markdown",
+          "enum": ["markdown", "plaintext"],
+          "description": "Language mode for AI responses"
+        },
+        "ai-agent.maxTokens": {
+          "type": "number",
+          "default": 2048,
+          "minimum": 100,
+          "maximum": 8192,
+          "description": "Maximum tokens for AI responses"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "ai-agent.askAI",
+        "title": "$(robot) Ask AI Agent",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.explainCode",
+        "title": "$(lightbulb) Explain Selected Code",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.improveCode",
+        "title": "$(zap) Improve/Refactor Code",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.documentCode",
+        "title": "$(book) Generate Documentation",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.switchModel",
+        "title": "$(settings-gear) Switch AI Model",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.explainText",
+        "title": "$(lightbulb) Explain Selected Text",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.analyzeContent",
+        "title": "$(search) Analyze Content",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.improveText",
+        "title": "$(zap) Improve Text",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.showStatus",
+        "title": "$(info) Show AI Agent Status",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.openSettings",
+        "title": "$(gear) Open AI Agent Settings",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.openChat",
+        "title": "$(comment-discussion) Open AI Chat",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.clearChat",
+        "title": "$(clear-all) Clear Chat History",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.focusSidebar",
+        "title": "$(sidebar-left) Focus AI Agent Sidebar",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.showActivityBar",
+        "title": "$(robot) Show AI Agent in Activity Bar",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.showEditorInfo",
+        "title": "$(info) Show Editor Info",
+        "category": "AI Agent"
+      },
+      {
+        "command": "ai-agent.forceActivityBar",
+        "title": "$(robot) Force AI Agent Activity Bar",
+        "category": "AI Agent"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "ai-agent.askAI",
+        "key": "ctrl+shift+a",
+        "mac": "cmd+shift+a",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "ai-agent.explainCode",
+        "key": "ctrl+shift+e",
+        "mac": "cmd+shift+e",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "ai-agent.improveCode",
+        "key": "ctrl+shift+i",
+        "mac": "cmd+shift+i",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "ai-agent.documentCode",
+        "key": "ctrl+shift+d",
+        "mac": "cmd+shift+d",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "ai-agent.explainText",
+        "key": "ctrl+shift+e",
+        "mac": "cmd+shift+e",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "ai-agent.analyzeContent",
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "ai-agent.openChat",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "true"
+      },
+      {
+        "command": "ai-agent.focusSidebar",
+        "key": "ctrl+shift+alt+a",
+        "mac": "cmd+shift+alt+a",
+        "when": "true"
+      },
+      {
+        "command": "ai-agent.forceActivityBar",
+        "key": "ctrl+shift+alt+f",
+        "mac": "cmd+shift+alt+f",
+        "when": "true"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "ai-agent.askAI",
+          "when": "true"
+        },
+        {
+          "command": "ai-agent.explainCode",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "ai-agent.improveCode",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "ai-agent.documentCode",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "ai-agent.switchModel",
+          "when": "true"
+        },
+        {
+          "command": "ai-agent.explainText",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "ai-agent.analyzeContent",
+          "when": "true"
+        },
+        {
+          "command": "ai-agent.improveText",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "ai-agent.showStatus",
+          "when": "true"
+        },
+        {
+          "command": "ai-agent.openSettings",
+          "when": "true"
+        },
+        {
+          "command": "ai-agent.openChat",
+          "when": "true"
+        },
+        {
+          "command": "ai-agent.clearChat",
+          "when": "true"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "ai-agent.askAI",
+          "group": "ai-agent@1",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "ai-agent.explainCode",
+          "group": "ai-agent@2",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "ai-agent.improveCode",
+          "group": "ai-agent@3",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "ai-agent.documentCode",
+          "group": "ai-agent@4",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "ai-agent.explainText",
+          "group": "ai-agent@2",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "ai-agent.improveText",
+          "group": "ai-agent@3",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "ai-agent.analyzeContent",
+          "group": "ai-agent@4",
+          "when": "editorTextFocus"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "ai-agent.switchModel",
+          "when": "view == ai-agent-chat",
+          "group": "navigation@1"
+        },
+        {
+          "command": "ai-agent.openSettings",
+          "when": "view == ai-agent-chat",
+          "group": "navigation@2"
+        },
+        {
+          "command": "ai-agent.clearChat",
+          "when": "view == ai-agent-chat",
+          "group": "navigation@3"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ai-agent-sidebar",
+          "title": "AI Agent",
+          "icon": "$(robot)"
+        }
+      ]
+    },
+    "views": {
+      "ai-agent-sidebar": [
+        {
+          "id": "ai-agent-ops",
+          "name": "Live Events",
+          "when": "true",
+          "type": "webview",
+          "icon": "$(list-unordered)"
+        },
+        {
+          "id": "ai-agent-status",
+          "name": "Status",
+          "when": "true",
+          "type": "webview",
+          "icon": "$(info)"
+        }
+      ]
+    },
+    "statusBar": {
+      "items": [
+        {
+          "id": "ai-agent.status",
+          "name": "AI Agent Status",
+          "alignment": "left",
+          "priority": 100
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "ai-agent-ops",
+        "contents": "Welcome to Conversational Ops!\n\n🤖 Monitor live events and quick actions.\n\n[Open Chat Panel](command:ai-agent.openChat)\n[Open Settings](command:ai-agent.openSettings)"
+      },
+      {
+        "view": "ai-agent-chat",
+        "contents": "Welcome to AI Agent Chat!\n\n🤖 Start chatting with your local AI assistant.\n\nMake sure Ollama is running on your system.\n\n[Open Settings](command:ai-agent.openSettings)"
+      },
+      {
+        "view": "ai-agent-tools",
+        "contents": "AI-powered tools at your fingertips!\n\n[Ask AI Agent](command:ai-agent.askAI)\n[Open Chat Panel](command:ai-agent.openChat)\n[Open Settings](command:ai-agent.openSettings)"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test",
+    "sonar": "sonar-scanner",
+    "sonar:local": "sonar-scanner -Dsonar.host.url=http://localhost:9000",
+    "quality:check": "npm run lint && npm run test && npm run sonar"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/node-fetch": "^2.6.13",
+    "@types/vscode": "^1.99.0",
+    "@typescript-eslint/eslint-plugin": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.32.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "openai": "^5.12.2"
+  }
+}
