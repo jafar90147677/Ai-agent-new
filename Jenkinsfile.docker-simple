@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+    agent {
+        docker {
+            image 'python:3.9-slim'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
     
     environment {
         PYTHON_VERSION = '3.9'
@@ -10,7 +15,7 @@ pipeline {
         timeout(time: 30, unit: 'MINUTES')
     }
     
-  stages {
+    stages {
         stage('Git Checkout') {
             steps {
                 echo '📥 Checking out code from Git...'
@@ -37,31 +42,6 @@ pipeline {
                 echo '🔧 Setting up Python environment...'
                 
                 sh '''
-                    # Check if Python is available
-                    if ! command -v python3 &> /dev/null; then
-                        echo "Python3 not found. Trying to install Python..."
-                        
-                        # Try to install Python without sudo (for Docker/containerized Jenkins)
-                        if command -v apt-get &> /dev/null; then
-                            echo "Installing Python3 using apt-get (no sudo)..."
-                            apt-get update
-                            apt-get install -y python3 python3-pip python3-venv
-                        # Try to install Python on CentOS/RHEL without sudo
-                        elif command -v yum &> /dev/null; then
-                            echo "Installing Python3 using yum (no sudo)..."
-                            yum install -y python3 python3-pip
-                        # Try to install Python on Alpine without sudo
-                        elif command -v apk &> /dev/null; then
-                            echo "Installing Python3 using apk (no sudo)..."
-                            apk add --no-cache python3 py3-pip
-                        else
-                            echo "❌ Cannot install Python automatically. Please install Python 3.9+ manually."
-                            echo "Available commands:"
-                            which apt-get yum apk brew || echo "No package manager found"
-                            exit 1
-                        fi
-                    fi
-                    
                     python3 --version
                     python3 -m venv venv
                     source venv/bin/activate
@@ -250,5 +230,5 @@ EOF
         unstable {
             echo '⚠️ Pipeline completed with warnings!'
         }
-  }
+    }
 }
