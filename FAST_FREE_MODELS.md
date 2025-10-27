@@ -35,7 +35,7 @@ Your AI Agent includes **3 completely free local models** that provide excellent
 
 ## 🚀 **Quick Setup Guide**
 
-### **Step 1: Install Fast Models**
+### **Step 1: Install Fast Models**hjgjhfj
 ```bash
 # Start Ollama service
 ollama serve
