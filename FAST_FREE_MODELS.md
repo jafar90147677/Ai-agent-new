@@ -49,7 +49,7 @@ ollama pull qwen2.5-coder # Best for coding
 ### **Step 2: Select Model**
 1. Open your AI Agent extension
 2. Click the model dropdown
-3. Select **"Phi-3 Mini 🔥 (Fast & Free)"**
+3. Select **"Phi-3 Mini 🔥 (Fast & Free)"**dgdfgd
 4. Start chatting with 5-15 second responses!
 
 ## 🎯 **Model Recommendations**
