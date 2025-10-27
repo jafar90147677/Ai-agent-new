@@ -4,7 +4,7 @@ Your AI Agent includes **3 completely free local models** that provide excellent
 
 ## ⚡ **Free Models Available**gfhfj
 
-### **1. 🎯 Qwen2.5-Coder (Alibaba) - DEFAULT & RECOMMENDED**
+### **1. 🎯 Qwen2.5-Coder (Alibaba) - DEFAULT & RECOMMENDED**dfdgfh
 - **Speed**: 10-25 seconds (fast for coding)
 - **Size**: 3.2GB
 - **Quality**: Excellent for coding tasks
