@@ -16,7 +16,7 @@ Your AI Agent includes **3 completely free local models** that provide excellent
 - **Size**: 3.8GB
 - **Quality**: Excellent for code analysis
 - **Best for**: Code explanation, refactoring, documentation
-- **Install**: `ollama pull codellama`
+- **Install**: `ollama pull codellama`sdsf
 
 ### **3. 🦙 Llama 3 (Meta) - GENERAL PURPOSE**
 - **Speed**: 60-180 seconds (comprehensive)
