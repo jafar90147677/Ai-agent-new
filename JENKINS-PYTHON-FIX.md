@@ -8,7 +8,7 @@ Your Jenkins pipeline failed because Python3 is not installed on the Jenkins ser
 
 ### **Option 1: Install Python on Jenkins Server (Recommended)**
 
-#### **For Ubuntu/Debian Jenkins Server:**
+#### **For Ubuntu/Debian Jenkins Server:**xfcfh
 ```bash
 # SSH into your Jenkins server
 sudo apt-get update
