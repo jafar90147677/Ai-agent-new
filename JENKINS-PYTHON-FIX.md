@@ -79,7 +79,7 @@ ssh your-jenkins-server
 sudo apt-get update && sudo apt-get install -y python3 python3-pip python3-venv
 ```
 
-### **Step 2: Update Jenkinsfile**
+### **Step 2: Update Jenkinsfile**fhfh
 ```bash
 # Commit the updated Jenkinsfile
 git add Jenkinsfile
