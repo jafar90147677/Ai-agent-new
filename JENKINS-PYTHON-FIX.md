@@ -91,7 +91,7 @@ git push origin main
 ```bash
 # Make a small change to trigger the pipeline
 echo "# Testing Python fix" >> README.md
-git add README.md
+git add README.mdsdgdg
 git commit -m "Test Python installation fix"
 git push origin main
 ```
