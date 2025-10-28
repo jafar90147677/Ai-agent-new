@@ -70,7 +70,7 @@ I've updated your `Jenkinsfile` to automatically try to install Python if it's n
 
 ## 📋 **Steps to Fix**
 
-### **Step 1: Install Python on Jenkins Server**
+### **Step 1: Install Python on Jenkins Server**sfdg
 ```bash
 # Connect to your Jenkins server
 ssh your-jenkins-server
