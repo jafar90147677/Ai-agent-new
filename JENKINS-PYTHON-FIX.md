@@ -93,7 +93,7 @@ git push origin main
 echo "# Testing Python fix" >> README.md
 git add README.mdsdgdg
 git commit -m "Test Python installation fix"
-git push origin main
+git push origin mainzdxg
 ```
 
 ## 🔍 **Verify Installation**
